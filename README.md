@@ -1,2 +1,5 @@
 # overlord-bot.github.io
-website
+ヾ(•ω•`)o
+it's a website
+
+degree planner web version
