@@ -1,4 +1,4 @@
-import { example } from "./components/test.js"
+import { example } from "./modules/test.js"
 
 window.onload = () => {
     //Code here executes when the page is ready
