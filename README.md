@@ -2,7 +2,7 @@
 ヾ(•ω•`)o
 it's a website
 
-degree planner web version
+degree planner web version!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
 
 ### For easy development
 
