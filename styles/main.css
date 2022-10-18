@@ -1,6 +1,12 @@
-body {
+body, #content {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
+    /*background-color: #161B22;
+    color: white;*/
+}
+
+#catalog {
+    overflow-y: auto;
 }
