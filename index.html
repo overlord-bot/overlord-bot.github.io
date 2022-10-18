@@ -17,6 +17,7 @@
   <form action="/action_page.php"></form>
   <label for="courses">Choose a course that you have taken:</label>
   <select name="courses" id="courses">
+    <option value="None">None</option>
     <option value="CS I">CSCI 1100 - Computer Science I</option>
     <option value="Calc I">MATH 1010 - Calculus I</option>
     <option value="Physics I">PHYS 1100 - Physics I</option>
@@ -27,6 +28,7 @@
 <form action="/action_page.php"></form>
   <label for="semester">When have you taken this course? </label>
   <select name="courses" id="courses">
+    <option value="None">None</option>
     <option value="FirstSem">Freshman Fall</option>
     <option value="SecondSem">Freshman Spring</option>
     <option value="ThirdSem">Sophomore Fall</option>
@@ -35,6 +37,18 @@
     <option value="SixthSem">Junior Fall</option>
     <option value="SeventhSem">Senior Fall</option>
     <option value="EightSem">Senior Spring</option>
+  </select>
+  <br><br>
+  <input type="submit" value="Submit">
+</form>
+<form action="/action_page.php"></form>
+  <label for="semester">Which course would you like to clear? </label>
+  <select name="courses" id="courses">
+    <option value="None">None</option>
+    <option value="CS I">CSCI 1100 - Computer Science I</option>
+    <option value="Calc I">MATH 1010 - Calculus I</option>
+    <option value="Physics I">PHYS 1100 - Physics I</option>
+    <option value="Biol I">BIOL 1010 - Introduction to Biology</option>
   </select>
   <br><br>
   <input type="submit" value="Submit">
