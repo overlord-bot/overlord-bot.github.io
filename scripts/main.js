@@ -19,6 +19,7 @@ window.onload = async () => {
     await schedule.schedule.semesters.forEach((element) => {
         element.forEach((course) => {
             console.log(course)
+            document.getElementById('freshman-fall').innerHTML += '<tr>' + course.id + ' ' + course.major + ' ' + course.name + '</tr>'
         })
     });
     /*
