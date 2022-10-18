@@ -1,5 +1,5 @@
 import { example } from "./modules/test.js"
-import { getCatalog } from "./modules/fetch.js"
+import { getCatalog, getSchedule} from "./modules/fetch.js"
 
 window.onload = async () => {
     //Code here executes when the page is ready
@@ -14,8 +14,16 @@ window.onload = async () => {
         document.getElementById('courses').innerHTML += '<option value=' + element.name + '>' + element.major + ' ' + element.name + '</option>'
     });
 
+    const schedule = await getSchedule(1);
+    console.log(schedule)
+    await schedule.schedule.semesters.forEach((element) => {
+        element.forEach((course) => {
+            console.log(course)
+        })
+    });
     /*
     Appends to the text inside the HTML body tag
     example function is an example on how to import and use other local JS files
     */
+
 };
