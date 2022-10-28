@@ -31,7 +31,7 @@ export const deleteCourse = async (num,data) => {
     return new Promise(async (res, rej) => {
         fetch('https://vna818.com/api/flask/degree-planner/users/vna/schedule/'+String(num),
         {
-            method: 'DELETE',
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
             },

@@ -1,6 +1,10 @@
 import { example } from "./modules/test.js"
 import { getCatalog, getSchedule,addCourse} from "./modules/fetch.js"
 
+const deleteCourse =  async (schedule) => {
+    
+}
+
 const getSemester = async (schedule) => {
     await schedule.schedule.semesters.forEach((element) => {
         element.forEach((course) => {
@@ -10,36 +14,37 @@ const getSemester = async (schedule) => {
         })
     });
 }
-
 window.onload = async () => {
     //Code here executes when the page is ready
     document.getElementById("submit").onclick = async () => {
-    document.getElementById('freshman-fall').innerHTML = ''
-    const course = document.getElementById("courses").value.replaceAll("-", " ");;
-    const semester = document.getElementById("semester").value;
-    var dict = {
-        "semester" : semester,
-        "courses" : [course]
-    }
-    console.log(dict)
-    const schedule = await addCourse(1,dict)
-    console.log(await schedule)
-    await getSemester(schedule)
-    };
-    document.getElementById("delete").onclick = async () => {
-    document.getElementById('freshman-fall').innerHTML = ''
-    const course = document.getElementById("courses").value.replaceAll("-", " ");;
-    const semester = document.getElementById("semester").value;
-    var dict = {
-        "semester" : semester,
-        "courses" : [course]
+        document.getElementById('freshman-fall').innerHTML = ''
+        const course = document.getElementById("courses").value.replaceAll("-", " ");;
+        const semester = document.getElementById("semester").value;
+        var dict = {
+            "semester" : semester,
+            "courses" : [course]
         }
-    console.log(dict)
-    const schedule = await deleteCourse(1,dict)
-    console.log(await schedule)
-    await getSemester(schedule)
-
+        console.log(dict)
+        const schedule = await addCourse(1,dict)
+        console.log(await schedule)
+        await getSemester(schedule)
+    };
     
+    document.getElementById("delete").onclick = async () => {
+        document.getElementById('freshman-fall').innerHTML = ''
+        const course = document.getElementById("courses").value.replaceAll("-", " ");;
+        const semester = document.getElementById("semester").value;
+        var dict = {
+            "semester" : semester,
+            "courses" : [course]
+        }
+        console.log(dict)
+        const schedule = await deleteCourse(1,dict)
+        console.log(await schedule)
+        await getSemester(schedule)
+    
+
+
     console.log("Running...")
     //Prints to the console, useful for debugging, press F12 to view
 
@@ -58,4 +63,4 @@ window.onload = async () => {
     example function is an example on how to import and use other local JS files
     */
 
-}};
+};
