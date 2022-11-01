@@ -2,11 +2,12 @@ import { example } from "./modules/test.js"
 import { getCatalog, getSchedule,addCourse, deleteCourse} from "./modules/fetch.js"
 
 const getSemester = async (schedule) => {
-    document.getElementById('freshman-fall').innerHTML += '<tr><th>' + 'Freshman Fall' + '</th></tr>'
-    await schedule.schedule.semesters.forEach((element) => {
+    const semesters = ['freshman-fall', 'freshman-spring','sophomore-fall','sophomore-spring','junior-summer','junior-fall','summer-fall','summer-spring']
+    await schedule.schedule.semesters.forEach((element, i) => {
+        document.getElementById(semesters[i]).innerHTML += '<tr><th>' + semesters[i].replaceAll("-", " ").toUpperCase() + '</th></tr>'
         element.forEach((course) => {
             console.log(course)
-            document.getElementById('freshman-fall').innerHTML += '<tr>' + course.id + ' ' + course.major + ' ' + course.name + '</tr>'
+            document.getElementById(semesters[i]).innerHTML += '<tr>' + course.id + ' ' + course.major + ' ' + course.name + '</tr>'
             document.getElementById('deleted').innerHTML += '<option value=' + course.name.replaceAll(" ", "-") + '>' + course.major + ' ' + course.name + '</option>'
         })
     });
@@ -29,8 +30,8 @@ window.onload = async () => {
     await getSemester(schedule)
     };
     document.getElementById("delete").onclick = async () => {
-        document.getElementById('freshman-fall').innerHTML = ''
-        const course = document.getElementById("deleted").value.replaceAll("-", " ");;
+        document.getElementById('freshman-fall').innerHTML = '';
+        const course = document.getElementById("deleted").value.replaceAll("-", " ");
         //const semester = document.getElementById("").value;
         var dict = {
             "semester" : 0,
@@ -39,6 +40,7 @@ window.onload = async () => {
         console.log(dict)
         const schedule = await deleteCourse(1,dict)
         console.log(await schedule)
+        document.getElementById('deleted').innerHTML = '<option value="None">None</option>'
         await getSemester(schedule)
     };
     
