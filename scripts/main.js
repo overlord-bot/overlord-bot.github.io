@@ -2,9 +2,9 @@ import { example } from "./modules/test.js"
 import { getCatalog, getSchedule,addCourse, deleteCourse} from "./modules/fetch.js"
 
 const getSemester = async (schedule) => {
-    const semesters = ['freshman-fall', 'freshman-spring','sophomore-fall','sophomore-spring','junior-summer','junior-fall','summer-fall','summer-spring']
+    const semesters = ['freshman-fall', 'freshman-spring','sophomore-fall','sophomore-spring','junior-summer','junior-fall','senior-fall','senior-spring']
     await schedule.schedule.semesters.forEach((element, i) => {
-        document.getElementById(semesters[i]).innerHTML += '<tr><th>' + semesters[i].replaceAll("-", " ").toUpperCase() + '</th></tr>'
+        document.getElementById(semesters[i]).innerHTML = '<tr><th>' + semesters[i].replaceAll("-", " ").toUpperCase() + '</th></tr>'
         element.forEach((course) => {
             console.log(course)
             document.getElementById(semesters[i]).innerHTML += '<tr>' + course.id + ' ' + course.major + ' ' + course.name + '</tr>'
@@ -29,18 +29,25 @@ window.onload = async () => {
     console.log(await schedule)
     await getSemester(schedule)
     };
+ 
     document.getElementById("delete").onclick = async () => {
-        document.getElementById('freshman-fall').innerHTML = '';
-        const course = document.getElementById("deleted").value.replaceAll("-", " ");
+        const semesters = ['freshman-fall', 'freshman-spring','sophomore-fall','sophomore-spring','junior-summer','junior-fall','senior-fall','senior-spring']
+        let j = 0;
+        var schedule;
+        for (let i in semesters){
+            console.log(semesters[i])
+            const course = document.getElementById("deleted").value.replaceAll("-", " ");
+            var dict = {
+                "semester" : j,
+                "courses" : [course]
+                }
+            console.log(dict)
+            schedule = await deleteCourse(1,dict)
+            console.log(await schedule)
+            j++;
+        }
+        document.getElementById('deleted').innerHTML = '<option value="None">None</option>';
         //const semester = document.getElementById("").value;
-        var dict = {
-            "semester" : 0,
-            "courses" : [course]
-            }
-        console.log(dict)
-        const schedule = await deleteCourse(1,dict)
-        console.log(await schedule)
-        document.getElementById('deleted').innerHTML = '<option value="None">None</option>'
         await getSemester(schedule)
     };
     
