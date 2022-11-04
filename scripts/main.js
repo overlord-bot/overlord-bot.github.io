@@ -2,13 +2,14 @@ import { example } from "./modules/test.js"
 import { getCatalog, getSchedule,addCourse, deleteCourse} from "./modules/fetch.js"
 
 const getSemester = async (schedule) => {
+    document.getElementById('deleted').innerHTML = '<option value="None">None</option>';
     const semesters = ['freshman-fall', 'freshman-spring','sophomore-fall','sophomore-spring','junior-summer','junior-fall','senior-fall','senior-spring']
     await schedule.schedule.semesters.forEach((element, i) => {
         document.getElementById(semesters[i]).innerHTML = '<tr><th>' + semesters[i].replaceAll("-", " ").toUpperCase() + '</th></tr>'
         element.forEach((course) => {
             console.log(course)
             document.getElementById(semesters[i]).innerHTML += '<tr>' + course.id + ' ' + course.major + ' ' + course.name + '</tr>'
-            document.getElementById('deleted').innerHTML += '<option value=' + course.name.replaceAll(" ", "-") + '>' + course.major + ' ' + course.name + '</option>'
+            document.getElementById("deleted").innerHTML += '<option value=' + course.name.replaceAll(" ", "-") + '>' + course.major + ' ' + course.name + '</option>'
         })
     });
 }
@@ -45,9 +46,7 @@ window.onload = async () => {
             schedule = await deleteCourse(1,dict)
             console.log(await schedule)
             j++;
-        }
-        document.getElementById('deleted').innerHTML = '<option value="None">None</option>';
-        //const semester = document.getElementById("").value;
+        }        //const semester = document.getElementById("").value;
         await getSemester(schedule)
     };
     
