@@ -26,7 +26,7 @@ const run = async (userid) => {
         "courses" : [course]
     }
     console.log(dict)
-    const schedule = await addCourse(1,dict)
+    const schedule = await addCourse(1,dict,userid)
     console.log(await schedule)
     await getSemester(schedule)
     };
@@ -43,7 +43,7 @@ const run = async (userid) => {
                 "courses" : [course]
                 }
             console.log(dict)
-            schedule = await deleteCourse(1,dict)
+            schedule = await deleteCourse(1,dict,userid)
             console.log(await schedule)
             j++;
         }        //const semester = document.getElementById("").value;
@@ -60,7 +60,7 @@ const run = async (userid) => {
         document.getElementById('courses').innerHTML += '<option value=' + element.name.replaceAll(" ", "-") + '>' + element.major + ' ' + element.name + '</option>'
     });
 
-    const schedule2 = await getSchedule(1);
+    const schedule2 = await getSchedule(1,userid);
     console.log(schedule2)
     await getSemester(schedule2);
     /*

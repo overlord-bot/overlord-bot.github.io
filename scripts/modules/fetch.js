@@ -6,17 +6,17 @@ export const getCatalog = async () => {
             .catch(error => console.log(error));
     })
 }
-export const getSchedule = async (num) => {
+export const getSchedule = async (num,userid) => {
     return new Promise(async (res, rej) => {
-        fetch('https://vna818.com/api/flask/degree-planner/users/vna/schedule/'+String(num))
+        fetch('https://vna818.com/api/flask/degree-planner/users/'+String(userid)+'/schedule/'+String(num))
             .then((response) => response.json())
             .then((data) => res(data))
             .catch(error => console.log(error));
     })
 }
-export const addCourse = async (num,data) => {
+export const addCourse = async (num,data,userid) => {
     return new Promise(async (res, rej) => {
-        fetch('https://vna818.com/api/flask/degree-planner/users/vna/schedule/'+String(num),
+        fetch('https://vna818.com/api/flask/degree-planner/users/'+String(userid)+'/schedule/'+String(num),
         {
             method: 'POST',
             headers: {
@@ -30,10 +30,10 @@ export const addCourse = async (num,data) => {
     })
 }
 
-export const deleteCourse = async (num,data) => {
+export const deleteCourse = async (num,data,userid) => {
     console.log(data)
     return new Promise(async (res, rej) => {
-        fetch('https://vna818.com/api/flask/degree-planner/users/vna/schedule/'+String(num),
+        fetch('https://vna818.com/api/flask/degree-planner/users/'+String(userid)+'/schedule/'+String(num),
         {
             method: 'DELETE',
             headers: {
