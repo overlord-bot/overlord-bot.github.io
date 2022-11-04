@@ -70,10 +70,13 @@ const run = async (userid) => {
 }
 
 window.onload = async () => {
-    
+    console.log(document.cookie)
+    if(document.cookie !== '') {
+        run(document.cookie);
+    }
     document.getElementById("userLogin").onclick = async () => {
         let userid = document.getElementById("userid").value;
+        document.cookie = userid;
         run(userid);
     }
-
 };
