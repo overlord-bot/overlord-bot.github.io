@@ -14,7 +14,7 @@ const getSemester = async (schedule) => {
     });
 }
 
-window.onload = async () => {
+const run = async (userid) => {
     console.log("test")
     //Code here executes when the page is ready
     document.getElementById("submit").onclick = async () => {
@@ -67,5 +67,13 @@ window.onload = async () => {
     Appends to the text inside the HTML body tag
     example function is an example on how to import and use other local JS files
     */
+}
+
+window.onload = async () => {
+    
+    document.getElementById("userLogin").onclick = async () => {
+        let userid = document.getElementById("userid").value;
+        run(userid);
+    }
 
 };
