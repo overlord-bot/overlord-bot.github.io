@@ -76,6 +76,8 @@ window.onload = async () => {
     }
     document.getElementById("userLogin").onclick = async () => {
         let userid = document.getElementById("userid").value;
+        let users = document.getElementById("display");
+        users.innerHTML = "Hello " + userid;
         document.cookie = userid;
         run(userid);
     }
