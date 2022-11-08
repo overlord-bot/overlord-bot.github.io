@@ -17,7 +17,13 @@ const getSemester = async (schedule) => {
 }
 
 const run = async (userid) => {
+    document.getElementById("scheduleSelect").onclick = async () => {
+    if (document.getElementById("scheduleSelect").value== "newSchedule")
+    {
+        alert("What would you like to name your schedule?");
 
+    }
+}
     //Code here executes when the page is ready
     document.getElementById("submit").onclick = async () => {
     if (document.getElementById("courses").value == "None" || document.getElementById("semester").value == "None" )
