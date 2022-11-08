@@ -16,14 +16,8 @@ const getSemester = async (schedule) => {
     });
 }
 
-const run = async (userid) => {
-    document.getElementById("scheduleSelect").onclick = async () => {
-    if (document.getElementById("scheduleSelect").value== "newSchedule")
-    {
-        alert("What would you like to name your schedule?");
-
-    }
-}
+const run = async (userid, scheduleId) => {
+    
     //Code here executes when the page is ready
     document.getElementById("submit").onclick = async () => {
     if (document.getElementById("courses").value == "None" || document.getElementById("semester").value == "None" )
@@ -40,7 +34,7 @@ const run = async (userid) => {
         "courses" : [course]
     }
     console.log(dict)
-    const schedule = await addCourse(1,dict,userid)
+    const schedule = await addCourse(scheduleId,dict,userid)
     console.log(await schedule)
     await getSemester(schedule)
 }
@@ -64,7 +58,7 @@ const run = async (userid) => {
                 "courses" : [course]
                 }
             console.log(dict)
-            schedule = await deleteCourse(1,dict,userid)
+            schedule = await deleteCourse(scheduleId,dict,userid)
             console.log(await schedule)
             j++;
         }        //const semester = document.getElementById("").value;
@@ -83,7 +77,7 @@ const run = async (userid) => {
         document.getElementById('courses').innerHTML += '<option value=' + element.name.replaceAll(" ", "-") + '>' + element.major + ' ' + element.name + '</option>'
     });
 
-    const schedule2 = await getSchedule(1,userid);
+    const schedule2 = await getSchedule(scheduleId,userid);
     console.log(schedule2)
     await getSemester(schedule2);
     
@@ -100,7 +94,7 @@ window.onload = async () => {
             ?.split('=')[1];
         let header = document.getElementById("logout");
         header.innerHTML = '<h2>' + user + '</h2>';
-        run(user);
+        run(user, "1");
     }
 
     document.getElementById("login").onsubmit = async (e) => {
@@ -111,7 +105,7 @@ window.onload = async () => {
         document.cookie = "user=" + userid;
         document.getElementById("loginContainer").style.display = "none";
         document.getElementById("scheduleSelect").style.display = "flex";
-        run(userid);
+        run(userid, "1");
     }
 
     document.getElementById("logout").onclick = () => {
@@ -124,4 +118,22 @@ window.onload = async () => {
             document.getElementById("logout").innerHTML = '';
         }
     };
+
+    document.getElementById("scheduleSelect").onclick = async () => {
+        if (document.getElementById("scheduleSelect").value== "newSchedule")
+        {
+            let text;
+            let person = prompt("What would you like to name your schedule?");
+            if (person == null || person == "") {
+                alert( "Please rename it properly");
+            } else {
+                let user = document.cookie
+                .split('; ')
+                .find((row) => row.startsWith('user='))
+                ?.split('=')[1];
+                run(user, person);
+            }
+    
+        }
+    }
 };
