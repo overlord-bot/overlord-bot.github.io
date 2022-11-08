@@ -5,17 +5,19 @@ const getSemester = async (schedule) => {
     document.getElementById('deleted').innerHTML = '<option value="None">None</option>';
     const semesters = ['freshman-fall', 'freshman-spring','sophomore-fall','sophomore-spring','junior-summer','junior-fall','senior-fall','senior-spring']
     await schedule.schedule.semesters.forEach((element, i) => {
-        document.getElementById(semesters[i]).innerHTML = '<tr><th>' + semesters[i].replaceAll("-", " ").toUpperCase() + '</th></tr>'
-        element.forEach((course) => {
-            console.log(course)
-            document.getElementById(semesters[i]).innerHTML += '<tr>' + course.id + ' ' + course.major + ' ' + course.name + '</tr>'
-            document.getElementById("deleted").innerHTML += '<option value=' + course.name.replaceAll(" ", "-") + '>' + course.major + ' ' + course.name + '</option>'
-        })
+        if(semesters[i] !== undefined) {
+            document.getElementById(semesters[i]).innerHTML = '<tr><th>' + semesters[i].replaceAll("-", " ").toUpperCase() + '</th></tr>'
+            element.forEach((course) => {
+                console.log(course)
+                document.getElementById(semesters[i]).innerHTML += '<tr>' + course.id + ' ' + course.major + ' ' + course.name + '</tr>'
+                document.getElementById("deleted").innerHTML += '<option value=' + course.name.replaceAll(" ", "-") + '>' + course.major + ' ' + course.name + '</option>'
+            })
+        }
     });
 }
 
 const run = async (userid) => {
-    console.log("test")
+
     //Code here executes when the page is ready
     document.getElementById("submit").onclick = async () => {
     document.getElementById('freshman-fall').innerHTML = ''
@@ -63,22 +65,42 @@ const run = async (userid) => {
     const schedule2 = await getSchedule(1,userid);
     console.log(schedule2)
     await getSemester(schedule2);
-    /*
-    Appends to the text inside the HTML body tag
-    example function is an example on how to import and use other local JS files
-    */
+    
 }
 
 window.onload = async () => {
+
     console.log(document.cookie)
     if(document.cookie !== '') {
-        run(document.cookie);
+        document.getElementById("loginContainer").style.display = "none";
+        let user = document.cookie
+            .split('; ')
+            .find((row) => row.startsWith('user='))
+            ?.split('=')[1];
+        let header = document.getElementById("logout");
+        header.innerHTML = '<h2>' + user + '</h2>';
+        run(user);
     }
-    document.getElementById("userLogin").onclick = async () => {
+
+    document.getElementById("login").onsubmit = async (e) => {
+        e.preventDefault();
         let userid = document.getElementById("userid").value;
-        let users = document.getElementById("display");
-        users.innerHTML = "Hello " + userid;
-        document.cookie = userid;
+        let header = document.getElementById("logout");
+        header.innerHTML = '<h2>' + userid + '</h2>';
+        document.cookie = "user=" + userid;
+        document.getElementById("loginContainer").style.display = "none";
+        document.getElementById("scheduleSelect").style.display = "flex";
         run(userid);
     }
+
+    document.getElementById("logout").onclick = () => {
+        if(document.cookie !== '') {
+            document.cookie = "user=; expires=Thu, 18 Dec 2013 12:00:00 UTC";
+            console.log(document.cookie);
+            console.log("logout");
+            document.getElementById("loginContainer").style.display = "flex";
+            document.getElementById("scheduleSelect").style.display = "none";
+            document.getElementById("logout").innerHTML = '';
+        }
+    };
 };
