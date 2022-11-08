@@ -20,6 +20,12 @@ const run = async (userid) => {
 
     //Code here executes when the page is ready
     document.getElementById("submit").onclick = async () => {
+    if (document.getElementById("courses").value == "None" || document.getElementById("semester").value == "None" )
+    {
+        alert("None is not a valid option");
+    }
+    else
+    {
     document.getElementById('freshman-fall').innerHTML = ''
     const course = document.getElementById("courses").value.replaceAll("-", " ");;
     const semester = document.getElementById("semester").value;
@@ -31,9 +37,16 @@ const run = async (userid) => {
     const schedule = await addCourse(1,dict,userid)
     console.log(await schedule)
     await getSemester(schedule)
+}
     };
  
     document.getElementById("delete").onclick = async () => {
+        if (document.getElementById("deleted").value == "None")
+        {
+            alert("None is not a valid option");
+        }
+        else
+        {
         const semesters = ['freshman-fall', 'freshman-spring','sophomore-fall','sophomore-spring','junior-summer','junior-fall','senior-fall','senior-spring']
         let j = 0;
         var schedule;
@@ -50,6 +63,8 @@ const run = async (userid) => {
             j++;
         }        //const semester = document.getElementById("").value;
         await getSemester(schedule)
+    }
+    
     };
     
     console.log("Running...")
