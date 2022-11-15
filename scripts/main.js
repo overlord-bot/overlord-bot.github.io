@@ -88,7 +88,10 @@ const run = async (userid) => {
              } else {
                 scheduleId = scheduleName;
                 document.getElementById('scheduleSelect').insertAdjacentHTML("afterbegin",'<option value=' + scheduleName + '>' + scheduleName + '</option>');
-                document.getElementById("scheduleSelect").value = scheduleId;           
+                document.getElementById("scheduleSelect").value = scheduleId;
+                const schedule2 = await getSchedule(scheduleId,userid);
+                console.log(schedule2)
+                await getSemester(schedule2);         
             }
     
         } else {
@@ -147,6 +150,7 @@ window.onload = async () => {
             document.getElementById("loginContainer").style.display = "flex";
             document.getElementById("scheduleSelect").style.display = "none";
             document.getElementById("logout").innerHTML = '';
+            document.getElementById("scheduleSelect").innerHTML = '';
         }
     };
 
