@@ -6,6 +6,7 @@ export const getCatalog = async () => {
             .catch(error => console.log(error));
     })
 }
+
 export const getSchedule = async (num,userid) => {
     return new Promise(async (res, rej) => {
         fetch('https://vna818.com/api/flask/degree-planner/users/'+String(userid)+'/schedule/'+String(num))
@@ -14,6 +15,16 @@ export const getSchedule = async (num,userid) => {
             .catch(error => console.log(error));
     })
 }
+
+export const getSchedules = async (userid) => {
+    return new Promise(async (res, rej) => {
+        fetch('https://vna818.com/api/flask/degree-planner/users/'+String(userid)+'/schedule')
+            .then((response) => response.json())
+            .then((data) => res(data))
+            .catch(error => console.log(error));
+    })
+}
+
 export const addCourse = async (num,data,userid) => {
     return new Promise(async (res, rej) => {
         fetch('https://vna818.com/api/flask/degree-planner/users/'+String(userid)+'/schedule/'+String(num),
