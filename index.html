@@ -12,6 +12,80 @@
     <link href="./styles/main.css" rel="stylesheet" />
   </head>
   <body>
-    <p>Welcome to the Overlord Discord Bot website.</p>
+    <div id="display">
+      <div id="header">
+        <h1>Overlord <span>Degree Planner</span></h1>
+        <span id="logged-in">
+          <button id="logout" title="Logout">
+            
+          </button>
+          <select id="scheduleSelect">
+            
+          </select>
+        </span>
+      </div>
+      <div>
+        <div id="loginContainer">
+          <form id="login">
+            <h2>Login</h2>
+            <input type="text" id="userid" name="userid" value="" placeholder="User Id" required>
+            <button type="submit" id="userLogin">Login</button>
+          </form>
+        </div>
+
+        <div id="content">
+          <div id="main">
+            <h2>Plan</h2>
+      
+            <div>
+              <label for="courses">Add course</label>
+              <select name="courses" id="courses">
+                <option value="None">None</option>
+              </select>
+              <label for="semester">When have you taken this course? </label>
+              <select name="courses" id="semester">
+                <option value="None">None</option>
+                <option value="0">Freshman Fall</option>
+                <option value="1">Freshman Spring</option>
+                <option value="2">Sophomore Fall</option>
+                <option value="3">Sophomore Spring</option>
+                <option value="4">Junior Summer</option>
+                <option value="5">Junior Fall</option>
+                <option value="6">Senior Fall</option>
+                <option value="7">Senior Spring</option>
+              </select>
+              <button id="submit" type="submit">Add</button>
+            </div>
+            
+            <div>
+              <label for="semester">Delete Course</label>
+              <select name="courses" id="deleted">
+                <option value="None">None</option>
+              </select>
+              <button id="delete">Delete</button>
+            </div> 
+          </div>
+          <div id="schedules">
+            <h2>Schedule</h2>
+            <table id="freshman-fall" style="width:60%">
+            </table>
+            <table id="freshman-spring" style="width:60%">
+            </table>
+            <table id="sophomore-fall" style="width:60%">
+            </table>
+            <table id="sophomore-spring" style="width:60%">
+            </table>
+            <table id="junior-summer" style="width:60%">
+            </table>
+            <table id="junior-fall" style="width:60%">
+            </table>
+            <table id="senior-fall" style="width:60%">
+            </table>
+            <table id="senior-spring" style="width:60%">
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
-</html>
+
